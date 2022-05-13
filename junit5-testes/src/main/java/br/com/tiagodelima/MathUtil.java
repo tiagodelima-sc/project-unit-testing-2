@@ -7,10 +7,9 @@ public class MathUtil {
 	 * */
 
 	public static int mdc(int valorA, int valorB) {
-		if(valorB > 0) {
-			if(valorA % valorB == 0) {
+		
+		if(valorB > 0 || valorA == 0) {
 				return valorB;
-			}
 		}
 		
 		return -1;
