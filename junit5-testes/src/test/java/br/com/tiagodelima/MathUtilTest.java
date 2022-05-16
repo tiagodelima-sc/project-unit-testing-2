@@ -1,28 +1,41 @@
 package br.com.tiagodelima;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import static br.com.tiagodelima.MathUtil.mdc;
 import org.junit.jupiter.api.Test;
 
 class MathUtilTest {
 
+	
+	// Se b > 0 é um divisor de a, então mdc(a,b) = b
 	@Test
-	void mdc() {
+	void testMdc_Propriedade1() {
 		
 		final int valorA = 6;
 		final int valorB = 3;
-		final int resultadoEsperado = 3;
+		final int resultadoEsperado = valorB;
 		
 		int resultadoObtido = MathUtil.mdc(valorA, valorB);
 
 		assertEquals(resultadoEsperado, resultadoObtido);
-		
 	}
 	
-
+	
 	@Test
-	void testMdcP2_TestandoNumerosPares() {
+	void testMdc_Propriedade1_TestandoNumerosImpares() {
+		
+		final int valorA = 9;
+		final int valorB = 3;
+		final int resultadoEsperado = valorB;
+		
+		int resultadoObtido = MathUtil.mdc(valorA, valorB);
+
+		assertEquals(resultadoEsperado, resultadoObtido);
+	}
+
+	
+	// todo numero que for divisor comum de a e b tambem é um divisor de mdc(a,b)
+	@Test
+	void testMdc_Propriedade2() {
 		
 		final int valorA = 16;
 		final int valorB = 8;
@@ -34,9 +47,8 @@ class MathUtilTest {
 		assertTrue(resultadoObtido % divisor == 0);
 	}
 	
-	/* Considerando que todo os números são fatores de 0 (pois 0 = 0.a para qualquer a inteiro)
-	 * então mdc(a,0) = |a|;
-	 * */
+	
+	//Considerando que todo os números são fatores de 0 (pois 0 = 0.a para qualquer a inteiro) então mdc(a,0) = |a|;
 	@Test
 	void testMdc_Propriedade3_ValorPositivo(){
 		
@@ -48,8 +60,8 @@ class MathUtilTest {
 		
 		//verificar se o resultadoObtido é igual resultadoEsperado
 		assertEquals(resultadoEsperado, resultadoObtido);
-		
 	}
+	
 	
 	@Test
 	void testMdc_Propriedade3_ValorNegativo(){
@@ -62,12 +74,10 @@ class MathUtilTest {
 		
 		//verificar se o resultadoObtido é igual resultadoEsperado
 		assertEquals(resultadoEsperado, resultadoObtido);
-		
 	}
 	
-	/* Se m é um inteiro não negativo 
-	 * então mdc(m.a, m.b) == m.mdc(a,b);
-	 */
+	
+	// Se m é um inteiro não negativo, então mdc(m.a, m.b) == m.mdc(a,b);
 	@Test
 	void testMdc_Propriedade4(){
 		
@@ -81,12 +91,10 @@ class MathUtilTest {
 		
 		//verificar se o resultadoObtido é igual resultadoEsperado
 		assertEquals(resultadoEsperado, resultadoObtido);
-		
 	}
 	
-	/* Se mdc(a,b) = 1 então
-	 * mdc(a.b,c) = mdc(a,c).mdc(b,c);
-	 */
+	
+	//Se mdc(a,b) = 1 então mdc(a.b,c) = mdc(a,c).mdc(b,c);
 	@Test
 	void testMdc_Propriedade5_1(){
 		
@@ -99,12 +107,10 @@ class MathUtilTest {
 		
 
 		assertEquals(resultadoEsperado, resultadoObtido);
-		
 	}
 	
 	
-	/* mdc(a,b) = mdc(b,c);
-	 */
+	//mdc(a,b) = mdc(b,c);
 	@Test
 	void testMdc_Propriedade6(){
 		
@@ -115,9 +121,9 @@ class MathUtilTest {
 		final int resultadoObtido = MathUtil.mdc(valorB, valorA);
 		
 		assertEquals(resultadoEsperado, resultadoObtido);
-		
 	}
 	
+	// mdc(-a,b) = mdc(a,-b) = mdc(-a, -b) = mdc(a,b);
 	@Test
 	void testMdc_Propriedade7() {
 		final int valorA = -12;
@@ -127,9 +133,6 @@ class MathUtilTest {
 		final int resultadoObtido = MathUtil.mdc(valorA, valorB);
 		
 		assertEquals(resultadoEsperado, resultadoObtido);
-
-
-
 	}
 	
 	
